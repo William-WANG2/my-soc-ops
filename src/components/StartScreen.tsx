@@ -39,7 +39,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
         <div 
           className="absolute top-2/5 opacity-20 text-xs font-mono px-3 py-2 rounded-lg border border-neon-cyan/30 bg-space-dark/20 backdrop-blur-sm animate-[float-up_8s_infinite]"
           style={{ 
-            left: '85%',
+            left: '75%',
             boxShadow: 'var(--glow-cyan)',
             animationDelay: '3s',
             willChange: 'transform, box-shadow'
@@ -134,13 +134,13 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </button>
 
           {/* Secondary CTA Link */}
-          <a
-            href="#questions"
-            className="preview-link block text-sm font-mono text-glow-cyan/70 hover:text-glow-cyan animate-[stagger-in_1.6s_ease-out] underline decoration-glow-cyan/30 hover:decoration-glow-cyan"
+          <button
+            className="preview-link block text-sm font-mono text-glow-cyan/70 hover:text-glow-cyan animate-[stagger-in_1.6s_ease-out] underline decoration-glow-cyan/30 hover:decoration-glow-cyan cursor-pointer bg-transparent border-0"
             aria-label="Preview all bingo questions"
+            disabled
           >
             Preview Questions →
-          </a>
+          </button>
         </div>
       </div>
     </div>
