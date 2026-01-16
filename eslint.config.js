@@ -9,15 +9,32 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
+    ignores: ['vite.config.ts', 'eslint.config.js'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        project: ['./tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': ['error', { 
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_'
+      }],
+      '@typescript-eslint/require-await': 'error',
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/await-thenable': 'error',
+      'no-return-await': 'off',
+      '@typescript-eslint/return-await': 'error',
     },
   },
 ])
