@@ -90,19 +90,18 @@ export function StartScreen({ onStart }: StartScreenProps) {
               { icon: '💾', title: 'Auto-Saves', delay: '0.2s' },
               { icon: '🎉', title: 'Break The Ice', delay: '0.3s' },
             ].map((feature, index) => (
-              <button
+              <div
                 key={index}
-                className="backdrop-blur-md bg-space-dark/40 rounded-lg p-4 border border-glow-purple/40 transition-all duration-300 hover:scale-105 hover:border-glow-cyan/60 active:scale-95 animate-[scale-pop_0.6s_ease-out] group"
+                className="backdrop-blur-md bg-space-dark/40 rounded-lg p-4 border border-glow-purple/40 transition-all duration-300 hover:scale-105 hover:border-glow-cyan/60 animate-[scale-pop_0.6s_ease-out]"
                 style={{
                   boxShadow: '0 0 20px rgba(196, 132, 252, 0.2), inset 0 0 15px rgba(196, 132, 252, 0.05)',
                   animationDelay: feature.delay,
                   willChange: 'transform'
                 }}
-                onClick={() => {}}
               >
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{feature.icon}</div>
+                <div className="text-3xl mb-2 transition-transform hover:scale-110">{feature.icon}</div>
                 <div className="text-glow-cyan/80 text-sm font-mono font-semibold">{feature.title}</div>
-              </button>
+              </div>
             ))}
           </div>
         </section>

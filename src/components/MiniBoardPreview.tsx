@@ -4,12 +4,17 @@ import { questions } from '../data/questions';
 export function MiniBoardPreview() {
   const [currentQuestionSet, setCurrentQuestionSet] = useState(0);
   
-  // Get 9 random questions for the mini board
+  // Get 9 random questions for the mini board using Fisher-Yates shuffle
   const getQuestionSet = (setIndex: number) => {
     const shuffled = [...questions];
-    // Simple shuffle based on set index for variety
+    // Use setIndex to create different boards for each cycle
+    let seed = setIndex;
+    
+    // Fisher-Yates shuffle with seeded randomization
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor((Math.sin(setIndex * i + i) + 1) / 2 * (i + 1));
+      // Simple LCG (Linear Congruential Generator) for pseudo-random seeding
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      const j = seed % (i + 1);
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled.slice(0, 9);
@@ -29,7 +34,6 @@ export function MiniBoardPreview() {
     <div className="grid grid-cols-3 gap-1.5 w-full max-w-[280px] mx-auto">
       {displayQuestions.map((question, index) => {
         const isFreeSpace = index === 4; // Center square
-        const isAnimating = true; // All squares animate on change
         
         return (
           <div
@@ -37,12 +41,11 @@ export function MiniBoardPreview() {
             className={`
               relative flex items-center justify-center p-2 text-center 
               rounded-lg transition-all duration-300 min-h-[70px] text-[10px] leading-tight
-              font-mono font-semibold backdrop-blur-sm border
+              font-mono font-semibold backdrop-blur-sm border animate-[stagger-in_0.5s_ease-out]
               ${isFreeSpace 
                 ? 'bg-gradient-to-br from-star-gold/20 to-star-gold/10 border-star-gold/60 text-star-gold font-display font-bold animate-[glow-pulse_2s_ease-in-out_infinite]' 
                 : 'bg-space-dark/40 border-glow-purple/40 text-glow-cyan/70 hover:scale-105 hover:border-glow-cyan/70 hover:bg-space-dark/60'
               }
-              ${isAnimating ? 'animate-[stagger-in_0.5s_ease-out]' : ''}
             `}
             style={{
               boxShadow: isFreeSpace 

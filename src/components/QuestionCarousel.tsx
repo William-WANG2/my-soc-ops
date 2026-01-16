@@ -4,11 +4,25 @@ import { questions } from '../data/questions';
 export function QuestionCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [itemsPerView, setItemsPerView] = useState(3);
   const carouselRef = useRef<HTMLDivElement>(null);
   
   // Get a selection of questions to show
   const displayQuestions = questions.slice(0, 10);
-  const itemsPerView = window.innerWidth >= 768 ? 3 : 1;
+
+  // Handle responsive items per view
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      setItemsPerView(window.innerWidth >= 768 ? 3 : 1);
+    };
+    
+    // Initial check
+    updateItemsPerView();
+    
+    // Add resize listener
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
 
   useEffect(() => {
     if (isPaused) return;
@@ -26,6 +40,15 @@ export function QuestionCarousel() {
 
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
+  
+  const handleTouchStart = () => {
+    setIsPaused(true);
+  };
+  
+  const handleTouchEnd = () => {
+    // Keep paused for a bit longer after touch ends to allow reading
+    setTimeout(() => setIsPaused(false), 2000);
+  };
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -38,8 +61,8 @@ export function QuestionCarousel() {
         className="relative overflow-hidden rounded-xl"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onTouchStart={handleMouseEnter}
-        onTouchEnd={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         <div
           ref={carouselRef}

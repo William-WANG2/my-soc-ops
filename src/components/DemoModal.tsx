@@ -9,9 +9,16 @@ interface DemoModalProps {
 export function DemoModal({ onClose, onStartGame }: DemoModalProps) {
   const [markedSquares, setMarkedSquares] = useState<Set<number>>(new Set([12])); // Free space pre-marked
 
-  // Generate a demo board with random questions
-  const getDemoBoard = () => {
-    const shuffled = [...questions].sort(() => Math.random() - 0.5);
+  // Generate a demo board with Fisher-Yates shuffle
+  const [demoBoard] = useState(() => {
+    const shuffled = [...questions];
+    
+    // Fisher-Yates shuffle algorithm
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
     const boardQuestions = shuffled.slice(0, 24);
     
     const board = [];
@@ -24,9 +31,7 @@ export function DemoModal({ onClose, onStartGame }: DemoModalProps) {
       }
     }
     return board;
-  };
-
-  const [demoBoard] = useState(getDemoBoard());
+  });
 
   const handleSquareClick = (squareId: number) => {
     const square = demoBoard[squareId];
