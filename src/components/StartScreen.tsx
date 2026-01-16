@@ -88,12 +88,8 @@ export function StartScreen({ onStart }: StartScreenProps) {
         {/* Feature Cards */}
         <div className="grid grid-cols-3 gap-2 md:gap-3">
           <div 
-            className="backdrop-blur-md bg-space-dark/40 rounded-lg p-3 border border-glow-purple/40 animate-[scale-pop_0.6s_ease-out,glow-pulse_2s_infinite] text-center"
-            style={{ 
-              boxShadow: '0 0 20px rgba(196, 132, 252, 0.3)', 
-              animationDelay: '0s, 1.4s',
-              willChange: 'transform, box-shadow'
-            }}
+            className="feature-card bg-space-dark/40 rounded-lg p-3 border border-glow-purple/40 animate-[scale-pop_0.6s_ease-out,glow-pulse_2s_infinite] text-center"
+            style={{ animationDelay: '0s, 1.4s' }}
           >
             <div className="text-2xl mb-1">🎲</div>
             <h3 className="text-xs font-display font-bold text-glow-cyan mb-1">Random Boards</h3>
@@ -101,12 +97,8 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </div>
 
           <div 
-            className="backdrop-blur-md bg-space-dark/40 rounded-lg p-3 border border-glow-purple/40 animate-[scale-pop_0.6s_ease-out,glow-pulse_2s_infinite] text-center"
-            style={{ 
-              boxShadow: '0 0 20px rgba(196, 132, 252, 0.3)', 
-              animationDelay: '0.2s, 1.7s',
-              willChange: 'transform, box-shadow'
-            }}
+            className="feature-card bg-space-dark/40 rounded-lg p-3 border border-glow-purple/40 animate-[scale-pop_0.6s_ease-out,glow-pulse_2s_infinite] text-center"
+            style={{ animationDelay: '0.2s, 1.7s' }}
           >
             <div className="text-2xl mb-1">💾</div>
             <h3 className="text-xs font-display font-bold text-glow-cyan mb-1">Auto-Saves</h3>
@@ -114,12 +106,8 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </div>
 
           <div 
-            className="backdrop-blur-md bg-space-dark/40 rounded-lg p-3 border border-glow-purple/40 animate-[scale-pop_0.6s_ease-out,glow-pulse_2s_infinite] text-center"
-            style={{ 
-              boxShadow: '0 0 20px rgba(196, 132, 252, 0.3)', 
-              animationDelay: '0.4s, 2s',
-              willChange: 'transform, box-shadow'
-            }}
+            className="feature-card bg-space-dark/40 rounded-lg p-3 border border-glow-purple/40 animate-[scale-pop_0.6s_ease-out,glow-pulse_2s_infinite] text-center"
+            style={{ animationDelay: '0.4s, 2s' }}
           >
             <div className="text-2xl mb-1">⚡</div>
             <h3 className="text-xs font-display font-bold text-glow-cyan mb-1">Zero Setup</h3>
@@ -146,16 +134,13 @@ export function StartScreen({ onStart }: StartScreenProps) {
           </button>
 
           {/* Secondary CTA Link */}
-          <button
-            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-            className="text-sm font-mono text-glow-cyan/70 hover:text-glow-cyan transition-colors animate-[stagger-in_1.6s_ease-out] underline decoration-glow-cyan/30 hover:decoration-glow-cyan"
-            style={{ textShadow: '0 0 0px transparent', willChange: 'text-shadow' }}
-            onMouseEnter={(e) => e.currentTarget.style.textShadow = 'var(--glow-cyan)'}
-            onMouseLeave={(e) => e.currentTarget.style.textShadow = '0 0 0px transparent'}
+          <a
+            href="#questions"
+            className="preview-link block text-sm font-mono text-glow-cyan/70 hover:text-glow-cyan animate-[stagger-in_1.6s_ease-out] underline decoration-glow-cyan/30 hover:decoration-glow-cyan"
             aria-label="Preview all bingo questions"
           >
             Preview Questions →
-          </button>
+          </a>
         </div>
       </div>
     </div>
