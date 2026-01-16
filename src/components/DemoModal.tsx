@@ -10,6 +10,8 @@ export function DemoModal({ onClose, onStartGame }: DemoModalProps) {
   const [markedSquares, setMarkedSquares] = useState<Set<number>>(new Set([12])); // Free space pre-marked
 
   // Generate a demo board with Fisher-Yates shuffle
+  // Note: Uses Math.random() for true randomness since this is initialized once per modal open,
+  // unlike MiniBoardPreview which uses seeded randomization for predictable cycling
   const [demoBoard] = useState(() => {
     const shuffled = [...questions];
     

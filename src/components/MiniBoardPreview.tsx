@@ -1,6 +1,11 @@
 import { useState, useEffect } from 'react';
 import { questions } from '../data/questions';
 
+// LCG constants for pseudo-random number generation
+const LCG_MULTIPLIER = 1103515245;
+const LCG_INCREMENT = 12345;
+const LCG_MODULUS = 0x7fffffff;
+
 export function MiniBoardPreview() {
   const [currentQuestionSet, setCurrentQuestionSet] = useState(0);
   
@@ -13,7 +18,7 @@ export function MiniBoardPreview() {
     // Fisher-Yates shuffle with seeded randomization
     for (let i = shuffled.length - 1; i > 0; i--) {
       // Simple LCG (Linear Congruential Generator) for pseudo-random seeding
-      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      seed = (seed * LCG_MULTIPLIER + LCG_INCREMENT) & LCG_MODULUS;
       const j = seed % (i + 1);
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }

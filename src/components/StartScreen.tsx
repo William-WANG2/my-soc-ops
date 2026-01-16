@@ -7,6 +7,15 @@ interface StartScreenProps {
   onStart: () => void;
 }
 
+// Sample questions for floating bubbles background
+const FLOATING_QUESTIONS = [
+  'bikes to work',
+  'has a pet', 
+  'plays an instrument',
+  'loves cooking',
+  'has traveled to Asia'
+];
+
 export function StartScreen({ onStart }: StartScreenProps) {
   const [showDemo, setShowDemo] = useState(false);
 
@@ -25,7 +34,7 @@ export function StartScreen({ onStart }: StartScreenProps) {
       </div>
 
       {/* Floating question bubbles */}
-      {['bikes to work', 'has a pet', 'plays an instrument', 'loves cooking', 'has traveled to Asia'].map((question, index) => (
+      {FLOATING_QUESTIONS.map((question, index) => (
         <div
           key={index}
           className="absolute text-xs font-mono text-glow-cyan/30 backdrop-blur-sm bg-space-dark/20 px-3 py-1.5 rounded-full border border-glow-purple/20 pointer-events-none opacity-0 animate-[float-up_8s_ease-in_infinite]"
