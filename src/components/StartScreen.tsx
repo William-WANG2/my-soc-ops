@@ -4,28 +4,37 @@ interface StartScreenProps {
   onStart: () => void;
 }
 
+const PREVIEW_QUESTIONS_COUNT = 8;
+const FLOATING_BUBBLE_QUESTIONS = [
+  questions[2], // has a pet
+  questions[12], // loves cooking
+  questions[17], // plays video games
+  questions[6], // speaks more than 2 languages
+  questions[19], // loves spicy food
+];
+
 export function StartScreen({ onStart }: StartScreenProps) {
-  // Select 8 sample questions for preview
-  const sampleQuestions = questions.slice(0, 8);
+  // Select sample questions for preview section
+  const sampleQuestions = questions.slice(0, PREVIEW_QUESTIONS_COUNT);
 
   return (
     <div className="cosmic-gradient relative min-h-screen overflow-x-hidden">
       {/* Floating question bubbles scattered throughout */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-up_8s_infinite]" style={{ animationDelay: '0s' }}>
-          has a pet
+        <div className="absolute top-[10%] left-[5%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-bubble_8s_infinite]" style={{ animationDelay: '0s' }}>
+          {FLOATING_BUBBLE_QUESTIONS[0]}
         </div>
-        <div className="absolute top-[25%] right-[10%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-up_10s_infinite]" style={{ animationDelay: '2s' }}>
-          loves cooking
+        <div className="absolute top-[25%] right-[10%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-bubble_10s_infinite]" style={{ animationDelay: '2s' }}>
+          {FLOATING_BUBBLE_QUESTIONS[1]}
         </div>
-        <div className="absolute top-[45%] left-[15%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-up_9s_infinite]" style={{ animationDelay: '4s' }}>
-          plays video games
+        <div className="absolute top-[45%] left-[15%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-bubble_9s_infinite]" style={{ animationDelay: '4s' }}>
+          {FLOATING_BUBBLE_QUESTIONS[2]}
         </div>
-        <div className="absolute top-[60%] right-[8%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-up_11s_infinite]" style={{ animationDelay: '1s' }}>
-          speaks 2+ languages
+        <div className="absolute top-[60%] right-[8%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-bubble_11s_infinite]" style={{ animationDelay: '1s' }}>
+          {FLOATING_BUBBLE_QUESTIONS[3]}
         </div>
-        <div className="absolute top-[80%] left-[20%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-up_7s_infinite]" style={{ animationDelay: '3s' }}>
-          loves spicy food
+        <div className="absolute top-[80%] left-[20%] backdrop-blur-sm bg-space-dark/30 rounded-full px-4 py-2 text-xs text-glow-cyan/60 border border-glow-purple/20 animate-[float-bubble_7s_infinite]" style={{ animationDelay: '3s' }}>
+          {FLOATING_BUBBLE_QUESTIONS[4]}
         </div>
       </div>
 
